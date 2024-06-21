@@ -12,7 +12,7 @@ class ListCabinet(ListAPIView):
 class RetrieveCabinet(RetrieveAPIView):
     queryset=UserCabinet.objects.all()
     serializer_class=UserCabinetSerializer
-    lookup_field='pk'
+    lookup_field='slug'
 
 
 
