@@ -18,24 +18,19 @@ class ListSong(ListAPIView):
     serializer_class=SongSerializers
     filter_backends=[filters.SearchFilter,DjangoFilterBackend]
     filterset_fields=['author']
-    search_fields=['song_name','genre']
-    def get_queryset(self):
-        queryset = SongModel.objects.all()
-
-        # Получаем параметр поиска из URL query params
-        search_query = self.request.query_params.get('search', None)
-
-        if search_query:
-            # Фильтруем по названию песни через поле genre__song_name
-            queryset = queryset.filter(genre__song_name__icontains=search_query)
+    search_fields=['song_name','genre__song_genre']
+    lookup_field='slug'
+  
     
 class RetrieveSong(RetrieveAPIView):
     queryset=SongModel.objects.all()
     serializer_class=SongSerializers
-    lookup_field='slug'
     filter_backends=[filters.SearchFilter,DjangoFilterBackend]
     filterset_fields=['author']
-    search_fields=['song_name','genre']
+    search_fields=['song_name','genre__song_genre']
+  
+    lookup_field='slug'
+    
 
 
 class DeleteSong(DestroyAPIView):

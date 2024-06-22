@@ -9,9 +9,9 @@ User=get_user_model()
 class UserCabinet(models.Model):
     author=models.ForeignKey(User,related_name='user_cabinet',on_delete=models.CASCADE,verbose_name='пользаватель', blank=True)
     nickname=models.CharField(max_length=100,verbose_name='имя')
-    slug=models.SlugField(max_length=50,unique=True,blank=True)
+    slug=models.SlugField(max_length=50,unique=True,blank=False)
     about_user=models.CharField(max_length=123,verbose_name='О себе')
-    favorite_genres=models.ForeignKey(SongGenre,on_delete=models.SET_NULL,null=True,verbose_name='любимый жанр',blank=True)
+    favorite_genres=models.ForeignKey('songs.SongGenre',on_delete=models.SET_NULL,null=True,verbose_name='любимый жанр',blank=True)
     user_image=models.ImageField(upload_to='user/img/',verbose_name='фото пользавателя',blank=True)
     image=models.ImageField(upload_to='banner/img/',verbose_name='фото баннера',blank=True)
 
