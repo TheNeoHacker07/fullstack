@@ -31,12 +31,12 @@ schema_view=get_schema_view(
 )
 
 
-
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/',include('account.urls')),
     path('song/',include('songs.urls')),
-    path('cabinet/',include('cabinet.urls'))
+    path('cabinet/',include('cabinet.urls')),
+    path('playlist/',include('playlists.urls')),
+    path('review/',include('review.urls'))
+    
 ]

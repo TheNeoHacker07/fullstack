@@ -32,11 +32,6 @@ class SongModel(models.Model):
     song=models.FileField(upload_to='songs/audio/',blank=True)
 
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.song_name)
-        super().save(*args, **kwargs)
-
         
 
     # created_at=models.DateTimeField(auto_now_add=True)
@@ -57,3 +52,8 @@ class SongModel(models.Model):
 
 
 # Create your models here.
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.song_name)
+        super().save(*args, **kwargs)

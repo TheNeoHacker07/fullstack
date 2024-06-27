@@ -7,7 +7,7 @@ from django.utils.text import slugify
 User=get_user_model()
 
 class UserCabinet(models.Model):
-    author=models.ForeignKey(User,related_name='user_cabinet',on_delete=models.CASCADE,verbose_name='пользаватель', blank=True)
+    author=models.OneToOneField(User,related_name='user_cabinet',on_delete=models.CASCADE,verbose_name='пользаватель', blank=True)
     nickname=models.CharField(max_length=100,verbose_name='имя')
     slug=models.SlugField(max_length=50,unique=True,blank=False)
     about_user=models.CharField(max_length=123,verbose_name='О себе')
