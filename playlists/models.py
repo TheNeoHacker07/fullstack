@@ -14,6 +14,7 @@ class Playlist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     songs = models.ManyToManyField(SongModel,blank=True, related_name='playlists')
+    song_text=models.TextField()
 
     def save(self,*args,**kwargs):
         if not self.slug:
